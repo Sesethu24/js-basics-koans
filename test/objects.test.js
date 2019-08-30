@@ -10,9 +10,9 @@ describe("When using object literals in JavaScipt", function() {
 			flavour : "sweet"
 		};
 
-		assert.equal("", apple.color);
-		assert.equal("", apple.price);
-		assert.equal("", apple.flavour);
+		assert.equal("red", apple.color);
+		assert.equal(4.25, apple.price);
+		assert.equal("sweet", apple.flavour);
 
 	});
 
@@ -24,13 +24,13 @@ describe("When using object literals in JavaScipt", function() {
 			flavour : "sweet"
 		};
 
-		assert.equal("", apple.color);
-		assert.equal("", apple.price);
-		assert.equal("", apple.flavour);
+		assert.equal("red", apple.color);
+		assert.equal(4.25, apple.price);
+		assert.equal("sweet", apple.flavour);
 
-		assert.equal("", apple["color"]);
-		assert.equal("", apple["price"]);
-		assert.equal("", apple["flavour"]);
+		assert.equal("red", apple["color"]);
+		assert.equal(4.25, apple["price"]);
+		assert.equal("sweet", apple["flavour"]);
 	});
 
 	it("know that object properties can be used together", function(){
@@ -42,7 +42,7 @@ describe("When using object literals in JavaScipt", function() {
 			quantity : 4
 		};
 
-		assert.equal(0, applePurchase.price * applePurchase.quantity);
+		assert.equal(17, applePurchase.price * applePurchase.quantity);
 	});
 
 	it("know that object properties can be used in function inside the object", function(){
@@ -56,10 +56,10 @@ describe("When using object literals in JavaScipt", function() {
 				return this.price * this.quantity;
 			}
 		};
-		assert.equal(0, applePurchase.totalPrice());
+		assert.equal(17, applePurchase.totalPrice());
 	});
 
-	it("know that objects can added to a list", function(){
+	it("know that objects can be added to a list", function(){
 		const apples = [
 			{
 				color : "yellow",
@@ -75,8 +75,20 @@ describe("When using object literals in JavaScipt", function() {
 				flavour : "sweet"
 			}
 		];
-		assert.equal(0, apples.length);
-		assert.deepEqual([], apples);
+		assert.equal(3, apples.length);
+		assert.deepEqual([{
+			color : "yellow",
+			price : 3.65,
+			flavour : "sour"
+		}, {
+			color : "red",
+			price : 4.25,
+			flavour : "sweet"
+		},{
+			color : "red",
+			price : 4.25,
+			flavour : "sweet"
+		}], apples);
 	});
 
 	it("know that objects in a list can be access via indexes", function(){
@@ -96,9 +108,15 @@ describe("When using object literals in JavaScipt", function() {
 			}
 		];
 		
-		assert.deepEqual({}, apples[2]);
-		assert.deepEqual({}, apples[0]);
-		assert.deepEqual({}, apples[1]);
+		assert.deepEqual({color : "red",
+		price : 4.25,
+		flavour : "sweet"}, apples[2]);
+		assert.deepEqual({color : "yellow",
+		price : 3.65,
+		flavour : "sour"}, apples[0]);
+		assert.deepEqual({color : "red",
+		price : 4.25,
+		flavour : "sweet"}, apples[1]);
 	});
 
 	it("know that objects properties in a list can be access via indexes", function(){
@@ -118,9 +136,9 @@ describe("When using object literals in JavaScipt", function() {
 			}
 		];
 		
-		assert.deepEqual("", apples[2].color);
-		assert.deepEqual(0, apples[0].price);
-		assert.deepEqual("", apples[1].flavour);
+		assert.deepEqual("red", apples[2].color);
+		assert.deepEqual(3.65, apples[0].price);
+		assert.deepEqual("sweet", apples[1].flavour);
 		
 	});
 
@@ -154,7 +172,7 @@ describe("When using object literals in JavaScipt", function() {
 			}
 		];
 		
-		let totalPrice = 0;
+		let totalPrice = 0.00;
 		// loop over the list here
 		for (var i=0;i<apples.length;i++) {
 			const currentApple = apples[i];
